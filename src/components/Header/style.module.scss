@@ -1,0 +1,106 @@
+.headlimit {
+  padding: 0 40px;
+}
+
+a {
+  font-size: 18px;
+  display: inline-block;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+
+  &_item {
+    display: flex;
+    align-items: center;
+  }
+
+  &_logo {
+    height: 55px;
+    width: 55px;
+  }
+
+  &_nav {
+    display: flex;
+    justify-content: center;
+    & > ul {
+      margin: 0 auto;
+      & > li {
+        display: inline-block;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  /* opacity: 0; */
+  overflow: hidden;
+  overflow-y: auto;
+  transition: opacity 0.3s;
+  z-index: 999;
+  animation: slideInFromTop 0.5s ease; /* Apply the animation */
+
+  &_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  &_block {
+    position: relative;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px 0;
+    transition:
+      opacity 0.3s,
+      transform 0.3s;
+
+    &_content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &_close {
+    padding: 10px 20px;
+    background-color: transparent;
+  }
+}
+
+.searchForm {
+  display: flex;
+  width: 100%;
+  &_button {
+    height: 55px;
+    width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & > input {
+    font-size: 22px;
+    border: 0;
+    width: 100%;
+    padding: 8px 15px;
+    outline: none;
+  }
+}
+
+

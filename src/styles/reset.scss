@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Titillium Web', Arial, sans-serif;
+  font-weight: 400;
+}
+
+a {
+  text-decoration-skip-ink: auto;
+  text-decoration: none;
+  color: black;
+  outline: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+input {
+  box-sizing: border-box;
+}

@@ -65,48 +65,46 @@ function Header() {
           </nav>
         </div>
       </div>
-      <div className={style.overlay}></div>
-      {isSearchOpen && (
-        <div>
-          <div className={style.modal}>
-            <div className={style.modal_wrapper}>
-              <div className={style.modal_block}>
-                <div className="container">
-                  <div
-                    className={`${style.headlimit} ${style.modal_block_content}`}
-                  >
-                    <form action="" className={style.searchForm}>
-                      <div className={style.searchForm_button}>
-                        <a href="#">
-                          <img
-                            src="https://www.svgrepo.com/show/522443/search.svg"
-                            alt="Search Icon"
-                            width="24"
-                            height="24"
-                          ></img>
-                        </a>
-                      </div>
-                      <input type="text" placeholder="Search our store" />
-                    </form>
-                    <a
-                      href="#"
-                      className={style.modal_close}
-                      onClick={searchModalClose}
-                    >
+      <div
+        className={`${style.overlay} ${isSearchOpen ? style.active : ''}`}
+      ></div>
+      <div className={`${style.modal} ${isSearchOpen ? style.active : ''}`}>
+        <div className={style.modal_wrapper}>
+          <div className={style.modal_block}>
+            <div className="container">
+              <div
+                className={`${style.headlimit} ${style.modal_block_content}`}
+              >
+                <form action="" className={style.searchForm}>
+                  <div className={style.searchForm_button}>
+                    <a href="#">
                       <img
-                        src="https://www.svgrepo.com/show/520676/cross.svg"
-                        alt="Cart Icon"
+                        src="https://www.svgrepo.com/show/522443/search.svg"
+                        alt="Search Icon"
                         width="24"
                         height="24"
                       ></img>
                     </a>
                   </div>
-                </div>
+                  <input type="text" placeholder="Search our store" />
+                </form>
+                <a
+                  href="#"
+                  className={style.modal_close}
+                  onClick={searchModalClose}
+                >
+                  <img
+                    src="https://www.svgrepo.com/show/520676/cross.svg"
+                    alt="Cart Icon"
+                    width="24"
+                    height="24"
+                  ></img>
+                </a>
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

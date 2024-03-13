@@ -1,3 +1,5 @@
+$overlay-color: rgba(0, 0, 0, 0.75);
+
 .headlimit {
   padding: 0 40px;
 }
@@ -44,13 +46,11 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
-  /* opacity: 0; */
-  overflow: hidden;
-  overflow-y: auto;
-  transition: opacity 0.3s;
   z-index: 999;
-  animation: slideInFromTop 0.5s ease; /* Apply the animation */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
 
   &_wrapper {
     position: absolute;
@@ -60,6 +60,7 @@ a {
     justify-content: center;
     align-items: center;
     width: 100%;
+    align-items: flex-start; /* Align items to the top */
   }
 
   &_block {
@@ -69,7 +70,7 @@ a {
     padding: 20px 0;
     transition:
       opacity 0.3s,
-      transform 0.3s;
+      transform 0.3s; /* Add transform property */
 
     &_content {
       display: flex;
@@ -81,6 +82,32 @@ a {
   &_close {
     padding: 10px 20px;
     background-color: transparent;
+  }
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $overlay-color;
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
   }
 }
 
@@ -95,12 +122,10 @@ a {
     justify-content: center;
   }
   & > input {
-    font-size: 22px;
+    font-size: 18px;
     border: 0;
     width: 100%;
     padding: 8px 15px;
     outline: none;
   }
 }
-
-

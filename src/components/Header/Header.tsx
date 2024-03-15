@@ -4,6 +4,15 @@ import imageSrc from '../../assets/img/image.png';
 
 function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const searchCartOpen = () => {
+    setIsCartOpen(true);
+  };
+
+  const searchCartClose = () => {
+    setIsCartOpen(false);
+  };
 
   const searchModalOpen = () => {
     setIsSearchOpen(true);
@@ -52,7 +61,7 @@ function Header() {
                     height="24"
                   ></img>
                 </a>
-                <a href="#">
+                <a href="#" onClick={searchCartOpen}>
                   <img
                     src="https://www.svgrepo.com/show/491808/cart-basket-ui-5.svg"
                     alt="Cart Icon"
@@ -66,9 +75,11 @@ function Header() {
         </div>
       </div>
       <div
-        className={`${style.overlay} ${isSearchOpen ? style.active : ''}`}
+        className={`${style.overlay} ${isSearchOpen || isCartOpen ? style.active : ''}`}
       ></div>
-      <div className={`${style.modal} ${isSearchOpen ? style.active : ''}`}>
+      <div
+        className={`${style.modal} ${isSearchOpen ? style.active : style.inactive}`}
+      >
         <div className={style.modal_wrapper}>
           <div className={style.modal_block}>
             <div className="container">
@@ -103,6 +114,27 @@ function Header() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div
+        className={`${style.cartModal} ${isCartOpen ? style.active : style.inactive}`}
+      >
+        <div className={style.cartModal_content}>
+          <div className={style.cartModal_content_label}>
+            <span>Cart</span>
+            <a href="#" onClick={searchCartClose}>
+              <img
+                src="https://www.svgrepo.com/show/520676/cross.svg"
+                alt="Cart Icon"
+                width="24"
+                height="24"
+              ></img>
+            </a>
+          </div>
+        </div>
+        <hr />
+        <div className={style.cartModal_list}>
+          Your cart is currently empty.
         </div>
       </div>
     </header>

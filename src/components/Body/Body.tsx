@@ -1,11 +1,34 @@
 import style from './style.module.scss';
-import { useState } from 'react';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import Card from '../Card/Card';
+import Pagination from '../Pagination/Pagination';
 
 function Body() {
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [openId, setOpenId] = useState(null)
+  const [beers, setBeers] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [beersPerPage] = useState(12)
+
+  const lastIndex = currentPage * beersPerPage
+  const firstIndex = lastIndex - beersPerPage
+  const currentBeers = beers.slice(firstIndex, lastIndex)
+
+  const paginate = (pageNumber:number) => setCurrentPage(pageNumber)
+
+  const getBeers = async () => {
+    setLoading(true)
+    const res = await axios.get('https://raw.githubusercontent.com/SeemsGood78/AnotherOne/master/src/assets/mock/Beers.json')
+    setBeers(res.data)
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getBeers()
+  }, [])
 
   const rule = {
     Volume: [0.3, 0.5, 0.8],
@@ -51,7 +74,8 @@ function Body() {
             </div>
           </div>
         </div>
-       <Card />
+        <Card beers={currentBeers} loading={loading} />
+        <Pagination beersPerPage={beersPerPage} totalbeers={beers.length} paginate={paginate} />
         <div
           className={`${style.filtermodal} ${isFilterOpen ? style.active : style.inactive}`}
         >

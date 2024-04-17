@@ -1,0 +1,43 @@
+.grid {
+    box-sizing: border-box;
+    padding: 0 40px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    display: grid;
+    grid-template: auto/1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-column-gap: 160px;
+
+    &_block {
+        width: 100%;
+        max-width: 300px;
+        min-width: 150px;
+
+
+        &_img {
+            &>img {
+                height: 300px;
+                width: 300px;
+            }
+        }
+
+        &_label {
+            margin-top: 10px;
+            margin-bottom: 60px;
+
+            &_row {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+
+                &:last-child {
+                    margin-top: 5px;
+                }
+
+                &>span {
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+}

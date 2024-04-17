@@ -1,0 +1,272 @@
+[
+  {
+    "Id": 1,
+    "Name": "Midnight Velvet",
+    "Volume": 0.3,
+    "Availability": "In stock",
+    "Price": 15,
+    "Type": "Stout",
+    "Image": "https://example.com/beer1.jpg"
+  },
+  {
+    "Id": 2,
+    "Name": "Golden Horizon",
+    "Volume": 0.5,
+    "Availability": "Out of stock",
+    "Price": 35,
+    "Type": "IPA",
+    "Image": "https://example.com/beer2.jpg"
+  },
+  {
+    "Id": 3,
+    "Name": "Oakwood Thunder",
+    "Volume": 0.8,
+    "Availability": "In stock",
+    "Price": 70,
+    "Type": "Stout",
+    "Image": "https://example.com/beer3.jpg"
+  },
+  {
+    "Id": 4,
+    "Name": "Sunset Citrus",
+    "Volume": 0.3,
+    "Availability": "Out of stock",
+    "Price": 105,
+    "Type": "IPA",
+    "Image": "https://example.com/beer4.jpg"
+  },
+  {
+    "Id": 5,
+    "Name": "Amber Mystique",
+    "Volume": 0.5,
+    "Availability": "In stock",
+    "Price": 25,
+    "Type": "Stout",
+    "Image": "https://example.com/beer5.jpg"
+  },
+  {
+    "Id": 6,
+    "Name": "Cascade Breeze",
+    "Volume": 0.8,
+    "Availability": "Out of stock",
+    "Price": 90,
+    "Type": "IPA",
+    "Image": "https://example.com/beer6.jpg"
+  },
+  {
+    "Id": 7,
+    "Name": "Moonlit Mocha",
+    "Volume": 0.3,
+    "Availability": "In stock",
+    "Price": 60,
+    "Type": "Stout",
+    "Image": "https://example.com/beer7.jpg"
+  },
+  {
+    "Id": 8,
+    "Name": "Golden Harvest",
+    "Volume": 0.5,
+    "Availability": "Out of stock",
+    "Price": 110,
+    "Type": "Brown Ale",
+    "Image": "https://example.com/beer8.jpg"
+  },
+  {
+    "Id": 9,
+    "Name": "Riverstone Porter",
+    "Volume": 0.8,
+    "Availability": "In stock",
+    "Price": 40,
+    "Type": "Porter",
+    "Image": "https://example.com/beer9.jpg"
+  },
+  {
+    "Id": 10,
+    "Name": "Twilight Velvet",
+    "Volume": 0.3,
+    "Availability": "Out of stock",
+    "Price": 85,
+    "Type": "Stout",
+    "Image": "https://example.com/beer10.jpg"
+  },
+  {
+    "Id": 11,
+    "Name": "Citrus Zest",
+    "Volume": 0.5,
+    "Availability": "In stock",
+    "Price": 20,
+    "Type": "IPA",
+    "Image": "https://example.com/beer11.jpg"
+  },
+  {
+    "Id": 12,
+    "Name": "Sunrise Glow",
+    "Volume": 0.8,
+    "Availability": "Out of stock",
+    "Price": 75,
+    "Type": "Saison",
+    "Image": "https://example.com/beer12.jpg"
+  },
+  {
+    "Id": 13,
+    "Name": "Velvet Noir",
+    "Volume": 0.3,
+    "Availability": "In stock",
+    "Price": 30,
+    "Type": "Stout",
+    "Image": "https://example.com/beer13.jpg"
+  },
+  {
+    "Id": 14,
+    "Name": "Tropical Breeze",
+    "Volume": 0.5,
+    "Availability": "Out of stock",
+    "Price": 65,
+    "Type": "IPA",
+    "Image": "https://example.com/beer14.jpg"
+  },
+  {
+    "Id": 15,
+    "Name": "Midsummer Dream",
+    "Volume": 0.8,
+    "Availability": "In stock",
+    "Price": 95,
+    "Type": "Stout",
+    "Image": "https://example.com/beer15.jpg"
+  },
+  {
+    "Id": 16,
+    "Name": "Golden Wheat",
+    "Volume": 0.3,
+    "Availability": "Out of stock",
+    "Price": 45,
+    "Type": "Wheat Beer",
+    "Image": "https://example.com/beer16.jpg"
+  },
+  {
+    "Id": 17,
+    "Name": "Mystic Moon",
+    "Volume": 0.5,
+    "Availability": "In stock",
+    "Price": 100,
+    "Type": "Stout",
+    "Image": "https://example.com/beer17.jpg"
+  },
+  {
+    "Id": 18,
+    "Name": "Crisp Amber",
+    "Volume": 0.8,
+    "Availability": "Out of stock",
+    "Price": 10,
+    "Type": "IPA",
+    "Image": "https://example.com/beer18.jpg"
+  },
+  {
+    "Id": 19,
+    "Name": "Silky Stout",
+    "Volume": 0.3,
+    "Availability": "In stock",
+    "Price": 55,
+    "Type": "Stout",
+    "Image": "https://example.com/beer19.jpg"
+  },
+  {
+    "Id": 20,
+    "Name": "Summer Breeze",
+    "Volume": 0.5,
+    "Availability": "Out of stock",
+    "Price": 80,
+    "Type": "Pale Ale",
+    "Image": "https://example.com/beer20.jpg"
+  },
+  {
+    "Id": 21,
+    "Name": "Velvet Sky",
+    "Volume": 0.8,
+    "Availability": "In stock",
+    "Price": 5,
+    "Type": "Stout",
+    "Image": "https://example.com/beer21.jpg"
+  },
+  {
+    "Id": 22,
+    "Name": "Crisp Citrus",
+    "Volume": 0.3,
+    "Availability": "Out of stock",
+    "Price": 95,
+    "Type": "IPA",
+    "Image": "https://example.com/beer22.jpg"
+  },
+  {
+    "Id": 23,
+    "Name": "Twilight Shadows",
+    "Volume": 0.5,
+    "Availability": "In stock",
+    "Price": 75,
+    "Type": "Stout",
+    "Image": "https://example.com/beer23.jpg"
+  },
+  {
+    "Id": 24,
+    "Name": "Harvest Spice",
+    "Volume": 0.8,
+    "Availability": "Out of stock",
+    "Price": 35,
+    "Type": "Porter",
+    "Image": "https://example.com/beer24.jpg"
+  },
+  {
+    "Id": 25,
+    "Name": "Mystic Stout",
+    "Volume": 0.3,
+    "Availability": "In stock",
+    "Price": 40,
+    "Type": "Stout",
+    "Image": "https://example.com/beer25.jpg"
+  },
+  {
+    "Id": 26,
+    "Name": "Crisp Cascade",
+    "Volume": 0.5,
+    "Availability": "Out of stock",
+    "Price": 20,
+    "Type": "IPA",
+    "Image": "https://example.com/beer26.jpg"
+  },
+  {
+    "Id": 27,
+    "Name": "Tangy Sunrise",
+    "Volume": 0.8,
+    "Availability": "In stock",
+    "Price": 70,
+    "Type": "Sour Beer",
+    "Image": "https://example.com/beer27.jpg"
+  },
+  {
+    "Id": 28,
+    "Name": "Dark Horizon",
+    "Volume": 0.3,
+    "Availability": "Out of stock",
+    "Price": 110,
+    "Type": "Stout",
+    "Image": "https://example.com/beer28.jpg"
+  },
+  {
+    "Id": 29,
+    "Name": "Crimson Sunset",
+    "Volume": 0.5,
+    "Availability": "In stock",
+    "Price": 15,
+    "Type": "IPA",
+    "Image": "https://example.com/beer29.jpg"
+  },
+  {
+    "Id": 30,
+    "Name": "Moonlit Meadow",
+    "Volume": 0.8,
+    "Availability": "Out of stock",
+    "Price": 50,
+    "Type": "Stout",
+    "Image": "https://example.com/beer30.jpg"
+  }
+]

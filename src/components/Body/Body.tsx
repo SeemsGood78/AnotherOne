@@ -1,5 +1,6 @@
 import style from './style.module.scss';
 import { useState } from 'react';
+import Card from '../Card/Card';
 
 function Body() {
 
@@ -10,13 +11,14 @@ function Body() {
     Volume: [0.3, 0.5, 0.8],
     Availability: ['In stock', 'Out of stock'],
     "Price $": ['<20', '20-40', '40-80', '80>`'],
-    Type: ['Stout', 'IPA'],
+    Type: ["Stout", "IPA", "Brown Ale", "Porter", "Saison", "Wheat Beer", "Pale Ale", "Sour Beer", "Lager", "Amber Ale"],
   };
 
-  const clickHandler = (index:any) => {
-    if(index === openId) setOpenId(null)
-      else setOpenId(index)
+  const clickHandler = (index: any) => {
+    if (index === openId) setOpenId(null)
+    else setOpenId(index)
   }
+
   const searchFilterOpen = () => {
     setIsFilterOpen(true);
   };
@@ -49,6 +51,7 @@ function Body() {
             </div>
           </div>
         </div>
+       <Card />
         <div
           className={`${style.filtermodal} ${isFilterOpen ? style.active : style.inactive}`}
         >

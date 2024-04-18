@@ -1,34 +1,31 @@
 import style from './style.module.scss';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
+import { useStore } from '../store';
 
 function Body() {
-
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [openId, setOpenId] = useState(null)
-  const [beers, setBeers] = useState([])
-  const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [beersPerPage] = useState(12)
+  const [selectedValue, setSelectedValue] = useState('featured');
+
+  const handleSelectChange = (e:any) => {
+    setSelectedValue(e.target.value);
+  };
+
+  const { beers, loading, getBeers } = useStore();
+
+  useEffect(() => {
+    getBeers();
+  }, [getBeers]);
 
   const lastIndex = currentPage * beersPerPage
   const firstIndex = lastIndex - beersPerPage
   const currentBeers = beers.slice(firstIndex, lastIndex)
 
-  const paginate = (pageNumber:number) => setCurrentPage(pageNumber)
-
-  const getBeers = async () => {
-    setLoading(true)
-    const res = await axios.get('https://raw.githubusercontent.com/SeemsGood78/AnotherOne/master/src/assets/mock/Beers.json')
-    setBeers(res.data)
-    setLoading(false)
-  }
-
-  useEffect(() => {
-    getBeers()
-  }, [])
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   const rule = {
     Volume: [0.3, 0.5, 0.8],
@@ -65,11 +62,11 @@ function Body() {
               Filter
             </button></div>
             <div className={style.filterbar_select}>
-              <select name="" id="">
-                <option value="" selected >Featured</option>
-                <option value="">21312</option>
-                <option value="">3123</option>
-                <option value="">3123</option>
+              <select value={selectedValue} onChange={handleSelectChange}>
+                <option value="Featured">Featured</option>
+                <option value="21312">21312</option>
+                <option value="3123">3123</option>
+                <option value="3123">3123</option>
               </select>
             </div>
           </div>
@@ -96,7 +93,7 @@ function Body() {
               <div>
                 {Object.entries(rule).map(([par, value], index) => {
                   return (
-                    <>
+                    <React.Fragment key={index}>
                       <hr />
                       <div
                         className={style.filtermodal_accordion_block}
@@ -134,7 +131,7 @@ function Body() {
                           ))}
                         </ul>
                       )}
-                    </>
+                    </React.Fragment>
                   );
                 })}
               </div>

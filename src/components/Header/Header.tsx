@@ -1,11 +1,21 @@
 import { useState } from 'react';
 import style from './style.module.scss';
 import imageSrc from '../../assets/img/image.png';
+import { useStore } from '../store';
 
 function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [search, setSearch] = useState('');
 
+  const { filterOpen, beers} = useStore();
+
+  const FilterableList = () => {
+    const Seacrhed = beers.filter((item) =>
+      item.Name.toLowerCase().includes(search.toLowerCase()),
+    );
+  }
+  
   const searchCartOpen = () => {
     setIsCartOpen(true);
   };
@@ -75,7 +85,7 @@ function Header() {
         </div>
       </div>
       <div
-        className={`${style.overlay} ${isSearchOpen || isCartOpen ? style.active : ''}`}
+        className={`${style.overlay} ${isSearchOpen || isCartOpen || filterOpen === true ? style.active : ''}`}
       ></div>
       <div
         className={`${style.modal} ${isSearchOpen ? style.active : style.inactive}`}
@@ -86,7 +96,7 @@ function Header() {
               <div
                 className={`${style.headlimit} ${style.modal_block_content}`}
               >
-                <form action="" className={style.searchForm}>
+                <form action="" onClick={e => e.preventDefault} className={style.searchForm}>
                   <div className={style.searchForm_button}>
                     <a href="#">
                       <img
@@ -97,7 +107,12 @@ function Header() {
                       ></img>
                     </a>
                   </div>
-                  <input type="text" placeholder="Search our store" />
+                  <input 
+                  type="text" 
+                  placeholder="Search our store"
+                  id='search'
+                  onChange={(e) => setSearch(e.target.value)}
+                  />
                 </form>
                 <a
                   href="#"

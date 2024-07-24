@@ -4,10 +4,13 @@ import axios from 'axios';
 type BeerStore = {
   beers: any[];
   loading: boolean;
-  getBeers: () => Promise<void>;
+  getBeers: () => void;
+  filterOpen: boolean;
+  Tooglefilter: () => void;
 };
 
-export const useStore = create<BeerStore>((set) => ({
+const store = create<BeerStore>((set) => ({
+  filterOpen: false,
   beers: [],
   loading: false,
   getBeers: async () => {
@@ -16,4 +19,7 @@ export const useStore = create<BeerStore>((set) => ({
     set({ beers: res.data });
     set({ loading: false });
   },
+  Tooglefilter: () => set((state) => ({ filterOpen: !state.filterOpen }))
 }));
+
+export const useStore = (store)

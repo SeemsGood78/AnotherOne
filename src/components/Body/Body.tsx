@@ -4,18 +4,18 @@ import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
 import { useStore } from '../store';
 
+const beersPerPage = 12
+
 function Body() {
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [openId, setOpenId] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
-  const [beersPerPage] = useState(12)
   const [selectedValue, setSelectedValue] = useState('featured');
 
   const handleSelectChange = (e:any) => {
     setSelectedValue(e.target.value);
   };
 
-  const { beers, loading, getBeers } = useStore();
+  const { beers, loading, getBeers, Tooglefilter, filterOpen} = useStore();
 
   useEffect(() => {
     getBeers();
@@ -39,20 +39,12 @@ function Body() {
     else setOpenId(index)
   }
 
-  const searchFilterOpen = () => {
-    setIsFilterOpen(true);
-  };
-
-  const searchFilterClose = () => {
-    setIsFilterOpen(false);
-  };
-
   return (
     <>
       <div className='container'>
         <div className={style.padd}>
           <div className={style.filterbar}>
-            <div onClick={searchFilterOpen}><button className={style.filterbar_button}>
+            <div onClick={Tooglefilter}><button className={style.filterbar_button}>
               <img
                 src="https://www.svgrepo.com/show/490975/adjustment.svg"
                 alt="Login Icon"
@@ -74,14 +66,14 @@ function Body() {
         <Card beers={currentBeers} loading={loading} />
         <Pagination beersPerPage={beersPerPage} totalbeers={beers.length} paginate={paginate} />
         <div
-          className={`${style.filtermodal} ${isFilterOpen ? style.active : style.inactive}`}
+          className={`${style.filtermodal} ${filterOpen ? style.active : style.inactive}`}
         >
           <div>
             <div className={style.filtermodal_header}>
               <div className={style.filtermodal_header_padd}>
                 <div className={style.filtermodal_header_padd_label}>Filter</div>
                 <img
-                  onClick={searchFilterClose}
+                  onClick={Tooglefilter}
                   src="https://www.svgrepo.com/show/520676/cross.svg"
                   alt="Cart Icon"
                   width="28"
@@ -120,7 +112,7 @@ function Body() {
                         </span>
                       </div>
                       {openId === index && (
-                        <ul className={style.filtermodal_accordion_content}>
+                        <ul className={style.filtermodal_accordion_content } >
                           {value.map((value, index) => (
                             <li>
                               <label key={index}>

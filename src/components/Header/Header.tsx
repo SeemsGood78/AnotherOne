@@ -6,16 +6,10 @@ import { useStore } from '../store';
 function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [search, setSearch] = useState('');
+  // const [accIndex, setaccIndex] = useState([]);
 
-  const { filterOpen, beers} = useStore();
+  const { filterOpen, setSearchUpdate, filterBeers} = useStore();
 
-  const FilterableList = () => {
-    const Seacrhed = beers.filter((item) =>
-      item.Name.toLowerCase().includes(search.toLowerCase()),
-    );
-  }
-  
   const searchCartOpen = () => {
     setIsCartOpen(true);
   };
@@ -111,7 +105,7 @@ function Header() {
                   type="text" 
                   placeholder="Search our store"
                   id='search'
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={(e) => {setSearchUpdate(e.target.value), filterBeers()}}
                   />
                 </form>
                 <a

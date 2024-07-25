@@ -15,7 +15,7 @@ function Body() {
     setSelectedValue(e.target.value);
   };
 
-  const { beers, loading, getBeers, Tooglefilter, filterOpen} = useStore();
+  const { beers, loading, getBeers, Tooglefilter, filterOpen, filteredBeers} = useStore();
 
   useEffect(() => {
     getBeers();
@@ -23,7 +23,7 @@ function Body() {
 
   const lastIndex = currentPage * beersPerPage
   const firstIndex = lastIndex - beersPerPage
-  const currentBeers = beers.slice(firstIndex, lastIndex)
+  const currentBeers = filteredBeers.length ? filteredBeers.slice(firstIndex, lastIndex): beers.slice(firstIndex, lastIndex)
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 

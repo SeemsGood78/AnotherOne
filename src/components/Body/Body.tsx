@@ -7,23 +7,24 @@ import { useStore } from '../store';
 const beersPerPage = 12
 
 function Body() {
-  const [openId, setOpenId] = useState(null)
+
   const [currentPage, setCurrentPage] = useState(1)
-  const [selectedValue, setSelectedValue] = useState('featured');
+  const [openIds, setOpenIds] = useState<number[]>([]);
 
-  const handleSelectChange = (e:any) => {
-    setSelectedValue(e.target.value);
-  };
-
-  const { beers, loading, getBeers, Tooglefilter, filterOpen, filteredBeers} = useStore();
+  const { beers, loading, getBeers, Tooglefilter, filterOpen, filteredBeers, sortBy, } = useStore();
 
   useEffect(() => {
     getBeers();
   }, [getBeers]);
 
+  const handleOptionChange = (e: any) => {
+    const {name, ask} = JSON.parse(e.target.value)
+    sortBy(name, !!ask)
+  };
+
   const lastIndex = currentPage * beersPerPage
   const firstIndex = lastIndex - beersPerPage
-  const currentBeers = filteredBeers.length ? filteredBeers.slice(firstIndex, lastIndex): beers.slice(firstIndex, lastIndex)
+  const currentBeers = filteredBeers.length ? filteredBeers.slice(firstIndex, lastIndex) : beers.slice(firstIndex, lastIndex)
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
@@ -34,10 +35,13 @@ function Body() {
     Type: ["Stout", "IPA", "Brown Ale", "Porter", "Saison", "Wheat Beer", "Pale Ale", "Sour Beer", "Lager", "Amber Ale"],
   };
 
-  const clickHandler = (index: any) => {
-    if (index === openId) setOpenId(null)
-    else setOpenId(index)
-  }
+  const clickHandler = (index: number) => {
+    setOpenIds((prevOpenItems) =>
+      prevOpenItems.includes(index)
+        ? prevOpenItems.filter((item) => item !== index)
+        : [...prevOpenItems, index]
+    );
+  };
 
   return (
     <>
@@ -54,11 +58,12 @@ function Body() {
               Filter
             </button></div>
             <div className={style.filterbar_select}>
-              <select value={selectedValue} onChange={handleSelectChange}>
-                <option value="Featured">Featured</option>
-                <option value="21312">21312</option>
-                <option value="3123">3123</option>
-                <option value="3123">3123</option>
+              <select onChange={handleOptionChange}>
+                <option value='{"name":"Order"}'>Sort</option>
+                <option value='{"name":"Name", "ask":true}'>Alphabetically, A-Z</option>
+                <option value='{"name":"Name", "ask":false}'>Alphabetically, Z-A</option>
+                <option value='{"name":"Price", "ask":true}'>From high to low</option>
+                <option value='{"name":"Price", "ask":false}'>From low to high</option>
               </select>
             </div>
           </div>
@@ -93,26 +98,17 @@ function Body() {
                       >
                         <div>{par}</div>
                         <span id="volume-icon">
-                          {openId === index ? (
-                            <img
-                              src="https://www.svgrepo.com/show/417899/arrow-bottom-1.svg"
-                              alt="Cart Icon"
-                              width="24"
-                              height="24"
-                              className={style.flip}
-                            ></img>
-                          ) : (
-                            <img
-                              src="https://www.svgrepo.com/show/417899/arrow-bottom-1.svg"
-                              alt="Cart Icon"
-                              width="24"
-                              height="24"
-                            ></img>
-                          )}
+                          <img
+                            src="https://www.svgrepo.com/show/417899/arrow-bottom-1.svg"
+                            alt="Cart Icon"
+                            width="24"
+                            height="24"
+                            className={`${style.flip} ${openIds.includes(index) ? style.active : style.inactive}`}
+                          ></img>
                         </span>
                       </div>
-                      {openId === index && (
-                        <ul className={style.filtermodal_accordion_content } >
+                      {openIds.includes(index) && (
+                        <ul className={style.filtermodal_accordion_content} >
                           {value.map((value, index) => (
                             <li>
                               <label key={index}>

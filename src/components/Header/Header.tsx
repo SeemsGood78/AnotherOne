@@ -26,6 +26,13 @@ function Header() {
     setIsSearchOpen(false);
   };
 
+  const handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      searchModalClose();
+    }
+  };
+
+
   return (
     <header>
       <div className="container">
@@ -101,11 +108,16 @@ function Header() {
                       ></img>
                     </a>
                   </div>
-                  <input 
-                  type="text" 
-                  placeholder="Search our store"
-                  id='search'
-                  onChange={(e) => {setSearchUpdate(e.target.value), filterBeers()}}
+                  <input
+                    type="text"
+                    placeholder="Search our store"
+                    id='search'
+                    onChange={(e) => {
+                      setSearchUpdate(e.target.value),
+                        filterBeers()
+                    }}
+                    onKeyDown={handleKeyDown}
+                    autoFocus
                   />
                 </form>
                 <a

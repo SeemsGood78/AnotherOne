@@ -106,7 +106,7 @@
 
             &_content {
                   margin-bottom: 20px;
-
+                  
                   &>li {
                         margin-bottom: 7px;
 
@@ -119,7 +119,15 @@
 }
 
 .flip {
+      transition: transform 0.5s ease-in-out;
+}
+
+.active {
       transform: rotateX(180deg);
+}
+
+.inactive {
+      transform: rotateX(0deg);
 }
 
 hr:last-child {

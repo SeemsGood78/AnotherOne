@@ -16,7 +16,7 @@ function Card({ beers, loading }: CardProps) {
                     <div className={style.grid_block_label}>
                         <div className={style.grid_block_label_row}>
                             <span>{beer.Name}</span>
-                            <span>{beer.Id}</span>
+                            <span>{beer.Price}</span>
                         </div>
                         <div className={style.grid_block_label_row}>
                             <span>{beer.Type}</span>

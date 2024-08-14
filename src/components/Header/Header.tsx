@@ -6,9 +6,8 @@ import { useStore } from '../store';
 function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  // const [accIndex, setaccIndex] = useState([]);
 
-  const { filterOpen, setSearchUpdate, filterBeers} = useStore();
+  const { filterOpen, setSearchUpdate, filterSearch} = useStore();
 
   const searchCartOpen = () => {
     setIsCartOpen(true);
@@ -114,7 +113,7 @@ function Header() {
                     id='search'
                     onChange={(e) => {
                       setSearchUpdate(e.target.value),
-                        filterBeers()
+                        filterSearch()
                     }}
                     onKeyDown={handleKeyDown}
                     autoFocus

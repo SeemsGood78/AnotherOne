@@ -17,11 +17,12 @@ interface BeerStore {
   searchState: string;
   getBeers: () => void;
   filterOpen: boolean;
-  Tooglefilter: () => void;
+  tooglefilter: () => void;
   setSearchUpdate: (value: string) => void;
-  filterBeers: () => void;
+  filterSearch: () => void;
   filteredBeers: Beer[];
   sortBy: (key: keyof Beer, ask:boolean) => void;
+  // applyFilters: (filtersObject:Record<keyof Beer, any[]>) => void;
 };
 
 const store = create<BeerStore>((set) => ({
@@ -37,12 +38,12 @@ const store = create<BeerStore>((set) => ({
     set({ beers: ordered, loading: false });
   },
   setSearchUpdate: (value) => set(state => ({ ...state, searchState: value })),
-  filterBeers: () => set((state) => {
+  filterSearch: () => set((state) => {
     const { searchState, beers } = state;
     const filteredBeers = searchState ? beers.filter((beer) => beer.Name.toLowerCase().includes(searchState.toLowerCase())) : beers;
     return { ...state, filteredBeers };
   }),
-  Tooglefilter: () => set((state) => ({ filterOpen: !state.filterOpen })),
+  tooglefilter: () => set((state) => ({ filterOpen: !state.filterOpen })),
   sortBy: (key, ask) => set((state) => ({
     beers: state.beers.sort((a, b) => {
       if (typeof a[key] === 'string' && typeof b[key] === 'string') return ask? a[key].localeCompare(b[key]) : b[key].localeCompare(a[key])
@@ -50,6 +51,9 @@ const store = create<BeerStore>((set) => ({
       return 0
     })
   })),
+  // applyFilters: (filtersObject) => set((state) => {
+
+  // }),
 }));
 
 export const useStore = (store)

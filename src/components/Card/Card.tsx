@@ -22,6 +22,9 @@ function Card({ beers, loading }: CardProps) {
                             <span>{beer.Type}</span>
                             <span>{beer.Volume}</span>
                         </div>
+                        <div>
+                            <button className={style.grid_block_label_button}>Add to cart</button>
+                        </div>
                     </div>
                 </div>
             )}

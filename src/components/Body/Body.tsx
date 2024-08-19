@@ -12,7 +12,7 @@ function Body() {
   const [currentPage, setCurrentPage] = useState(1)
   const [openIds, setOpenIds] = useState<number[]>([]);
 
-  const { beers, loading, getBeers, tooglefilter, filterOpen, filteredBeers, sortBy, } = useStore();
+  const { beers, loading, getBeers, tooglefilter, filterOpen, filteredBeers, sortBy, applyFilters } = useStore();
 
   useEffect(() => {
     getBeers();
@@ -32,7 +32,7 @@ function Body() {
   const rule = {
     Volume: [0.3, 0.5, 0.8],
     Availability: ['In stock', 'Out of stock'],
-    "Price $": ['<20', '20-40', '40-80', '80>'],
+    Price: ['<20', '20-40', '40-80', '80>'],
     Type: ["Stout", "IPA", "Brown Ale", "Porter", "Saison", "Wheat Beer", "Pale Ale", "Sour Beer", "Lager", "Amber Ale"],
   };
 
@@ -47,7 +47,7 @@ function Body() {
   const checkValue = (e: any, par: string) => {
     const value = e.target.value;
     const existValue = filter?.[par] ?? [];
-    const newValue = existValue.includes(value)? existValue.filter((item:any) => item != value) : [...existValue, value];
+    const newValue = existValue.includes(value) ? existValue.filter((item: any) => item != value) : [...existValue, value];
     filter[par] = newValue;
   }
 
@@ -130,7 +130,9 @@ function Body() {
                     </React.Fragment>
                   );
                 })}
-                <button className={style.filtermodal_button}>Apply</button>
+                <button className={style.filtermodal_button}
+                  onClick={() => applyFilters(filter)}
+                >Apply</button>
               </div>
             </div>
           </div>

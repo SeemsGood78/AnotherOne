@@ -21,8 +21,8 @@ interface BeerStore {
   setSearchUpdate: (value: string) => void;
   filterSearch: () => void;
   filteredBeers: Beer[];
-  sortBy: (key: keyof Beer, ask:boolean) => void;
-  // applyFilters: (filtersObject:Record<keyof Beer, any[]>) => void;
+  sortBy: (key: keyof Beer, ask: boolean) => void;
+  applyFilters: (filtersObject: Record<keyof Beer, any[]>) => void;
 };
 
 const store = create<BeerStore>((set) => ({
@@ -34,7 +34,7 @@ const store = create<BeerStore>((set) => ({
   getBeers: async () => {
     set({ loading: true });
     const res = await axios.get('https://raw.githubusercontent.com/SeemsGood78/AnotherOne/master/src/assets/mock/Beers.json');
-    const ordered = res.data.map((obj:any,index:number) => ({...obj, Order:index}))
+    const ordered = res.data.map((obj: any, index: number) => ({ ...obj, Order: index }))
     set({ beers: ordered, loading: false });
   },
   setSearchUpdate: (value) => set(state => ({ ...state, searchState: value })),
@@ -46,14 +46,22 @@ const store = create<BeerStore>((set) => ({
   tooglefilter: () => set((state) => ({ filterOpen: !state.filterOpen })),
   sortBy: (key, ask) => set((state) => ({
     beers: state.beers.sort((a, b) => {
-      if (typeof a[key] === 'string' && typeof b[key] === 'string') return ask? a[key].localeCompare(b[key]) : b[key].localeCompare(a[key])
-      else if (typeof a[key] === 'number' && typeof b[key] === 'number') return !ask? a[key] - b[key] : b[key] - a[key]
+      if (typeof a[key] === 'string' && typeof b[key] === 'string') return ask ? a[key].localeCompare(b[key]) : b[key].localeCompare(a[key])
+      else if (typeof a[key] === 'number' && typeof b[key] === 'number') return !ask ? a[key] - b[key] : b[key] - a[key]
       return 0
     })
   })),
-  // applyFilters: (filtersObject) => set((state) => {
-
-  // }),
+  applyFilters: (filtersObject) => set(state => ({
+    beers: state.beers.filter((beer: any) => {
+      const res = Object.entries(filtersObject).every(([key, value]: [string, string[]]) => {
+        if (key === 'Price') {
+          
+        }
+        return value.includes(String (beer[key]));
+      });
+      return res
+    }),
+  })),
 }));
 
 export const useStore = (store)

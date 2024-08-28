@@ -1,0 +1,48 @@
+.cartModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 80%;
+    height: 100%;
+    z-index: 999;
+    visibility: hidden;
+    background-color: #ffffff;
+    padding: 25px;
+    transition: 1s ease;
+    transform: translateX(100%);
+    opacity: 0;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    &.inactive {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(100%);
+    }
+
+    &_content {
+        &_label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+
+            &>a {
+                padding-right: 0px;
+            }
+
+            &>span {
+                font-size: 20px;
+            }
+        }
+    }
+
+    &_list {
+        font-size: 18px;
+        margin-top: 30px;
+    }
+}

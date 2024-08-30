@@ -1,7 +1,7 @@
 import style from './style.module.scss'
 import imageSrc from '../../assets/img/image.png';
 
-const Navbar = () => {
+const Navbar = ({isSearchOpen,setIsSearchOpen, isCartOpen, setIsCartOpen}:{isSearchOpen:boolean, setIsSearchOpen: (...args: any) => any, isCartOpen:boolean, setIsCartOpen: (...args: any) => any}) => {
     return (
         <div className="container">
             <div className={style.headlimit}>

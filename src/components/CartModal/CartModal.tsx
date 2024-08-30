@@ -1,6 +1,6 @@
 import style from './style.module.scss'
 
-const CartModal = ({isCartOpen,setIsCartOpen}:{isCartOpen:boolean,setIsCartOpen:Dispatch<SetStateAction<boolean>>}) => {
+const CartModal = ({isCartOpen,setIsCartOpen}:{isCartOpen:boolean,setIsCartOpen: (...args: any) => any}) => {
     return (
         <div
             className={`${style.cartModal} ${isCartOpen ? style.active : style.inactive}`}

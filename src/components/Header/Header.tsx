@@ -7,7 +7,7 @@ import Navbar from '../Navbar/Navbar';
 
 function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
   const {filterOpen} = useStore();
 

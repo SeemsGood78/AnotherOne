@@ -1,7 +1,7 @@
 import style from './style.module.scss'
 import { useStore } from '../store';
 
-const SearchModal = ({isSearchOpen,setIsSearchOpen}:{isSearchOpen:boolean,setIsSearchOpen:Dispatch<SetStateAction<boolean>>}) => {
+const SearchModal = ({isSearchOpen,setIsSearchOpen}:{isSearchOpen:boolean,setIsSearchOpen: (...args: any) => any}) => {
 
     const {setSearchUpdate, filterSearch} = useStore();
 

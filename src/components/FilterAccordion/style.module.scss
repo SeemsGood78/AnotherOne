@@ -52,3 +52,22 @@
 hr:last-child {
     visibility: hidden;
 }
+
+.slider{
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    margin-top: 25px;
+}
+
+.thumb{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    cursor: grab;
+    background: white;
+    border-radius: 50%;
+    border: 2px solid black;
+}

@@ -4,11 +4,12 @@ import { useState } from 'react';
 import { useStore } from '../store';
 import ReactSlider from 'react-slider';
 
+const filter: Record<string, any> = {};
+
 const FilterAccordion = () => {
 
-    const { applyFilters } = useStore();
+    const { applyFilters, resetBeers } = useStore();
     const [openIds, setOpenIds] = useState<number[]>([]);
-    const filter: Record<string, any> = {};
     const [price, setPrice] = useState([0, 100]);
 
     const rule = {
@@ -27,11 +28,10 @@ const FilterAccordion = () => {
     };
 
     const checkValue = (e: any, par: string) => {
-        const value = e.target.value;
+        const value = par === 'Price' ? price : e.target.value;
         const existValue = filter?.[par] ?? [];
-        const newValue = existValue.includes(value) ? existValue.filter((item: any) => item != value) : [...existValue, value];
+        const newValue = par === 'Price' ? value : existValue.includes(value) ? existValue.filter((item: any) => item != value) : [...existValue, value];
         filter[par] = newValue;
-        console.log(filter) // ??
     };
 
     return (
@@ -64,7 +64,7 @@ const FilterAccordion = () => {
                                             <ReactSlider className={style.slider} thumbClassName={style.thumb}
                                                 onChange={(newValue) => {
                                                     setPrice(newValue);
-                                                    console.log(newValue);
+                                                    checkValue(price, par);
                                                 }}
                                                 value={price}
                                                 min={0}
@@ -89,9 +89,14 @@ const FilterAccordion = () => {
                         </React.Fragment>
                     );
                 })}
-                <button className={style.filterAccordion_button}
-                    onClick={() => applyFilters(filter)}
-                >Apply</button>
+                <div className={style.filterAccordion_buttonblock}>
+                    <button
+                        onClick={() => applyFilters(filter)}
+                    >Apply</button>
+                    <button
+                    onClick={() => (resetBeers())}
+                    >Reset</button>
+                    </div>
             </div>
         </div>
     )

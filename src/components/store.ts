@@ -13,6 +13,7 @@ interface Beer {
 
 interface BeerStore {
   beers: Beer[];
+  originalBeers: Beer[];
   loading: boolean;
   searchState: string;
   getBeers: () => void;
@@ -20,6 +21,7 @@ interface BeerStore {
   tooglefilter: () => void;
   setSearchUpdate: (value: string) => void;
   filterSearch: () => void;
+  resetBeers: () => void;
   filteredBeers: Beer[];
   sortBy: (key: keyof Beer, ask: boolean) => void;
   applyFilters: (filtersObject: Record<keyof Beer, any[]>) => void;
@@ -30,12 +32,13 @@ const store = create<BeerStore>((set) => ({
   searchState: '',
   filteredBeers: [],
   beers: [],
+  originalBeers: [],
   loading: false,
   getBeers: async () => {
     set({ loading: true });
     const res = await axios.get('https://raw.githubusercontent.com/SeemsGood78/AnotherOne/master/src/assets/mock/Beers.json');
     const ordered = res.data.map((obj: any, index: number) => ({ ...obj, Order: index }))
-    set({ beers: ordered, loading: false });
+    set({ beers: ordered, loading: false,originalBeers: ordered});
   },
   setSearchUpdate: (value) => set(state => ({ ...state, searchState: value })),
   filterSearch: () => set((state) => {
@@ -55,13 +58,15 @@ const store = create<BeerStore>((set) => ({
     beers: state.beers.filter((beer: any) => {
       const res = Object.entries(filtersObject).every(([key, value]: [string, string[]]) => {
         if (key === 'Price') {
-          
+          const [min, max] = value.map(Number);
+          return (beer[key]) >= min && (beer[key]) <= max;
         }
-        return value.includes(String (beer[key]));
+        return value.includes(String(beer[key]));
       });
       return res
     }),
   })),
+  resetBeers: () => set((state) => ({beers: state.originalBeers}))
 }));
 
 export const useStore = (store)

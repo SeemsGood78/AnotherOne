@@ -11,6 +11,15 @@ const FilterAccordion = () => {
     const { applyFilters, resetBeers } = useStore();
     const [openIds, setOpenIds] = useState<number[]>([]);
     const [price, setPrice] = useState([0, 100]);
+    const [isChecked, setIsChecked] = useState<Array<string | number>>([]);
+
+    const handleCheckboxChange = (value:string) => {
+        setIsChecked((prevChecked) =>
+            prevChecked.includes(value)
+                ? prevChecked.filter((item) => item !== value)
+                : [...prevChecked, value]
+        );
+    };
 
     const rule = {
         Volume: [0.3, 0.5, 0.8],
@@ -77,7 +86,13 @@ const FilterAccordion = () => {
                                             {value.map((value, index) => (
                                                 <li key={index}>
                                                     <label>
-                                                        <input type="checkbox" value={value} onClick={(e) => checkValue(e, par)} />
+                                                        <input
+                                                            type="checkbox"
+                                                            value={value}
+                                                            onClick={(e) => checkValue(e, par)}
+                                                            checked={isChecked.includes(value)}
+                                                            onChange={() => handleCheckboxChange(value.toString())}
+                                                        />
                                                         <span>{value}</span>
                                                     </label>
                                                 </li>
@@ -91,12 +106,12 @@ const FilterAccordion = () => {
                 })}
                 <div className={style.filterAccordion_buttonblock}>
                     <button
+                        onClick={() => (resetBeers())}
+                    >Reset</button>
+                    <button
                         onClick={() => applyFilters(filter)}
                     >Apply</button>
-                    <button
-                    onClick={() => (resetBeers())}
-                    >Reset</button>
-                    </div>
+                </div>
             </div>
         </div>
     )

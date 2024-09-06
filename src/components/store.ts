@@ -66,7 +66,7 @@ const store = create<BeerStore>((set) => ({
       return res
     }),
   })),
-  resetBeers: () => set((state) => ({beers: state.originalBeers}))
+  resetBeers: () => set((state) => ({beers: state.originalBeers})),
 }));
 
 export const useStore = (store)

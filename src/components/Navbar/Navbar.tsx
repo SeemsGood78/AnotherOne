@@ -1,5 +1,6 @@
 import style from './style.module.scss'
 import imageSrc from '../../assets/img/image.png';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({isSearchOpen,setIsSearchOpen, isCartOpen, setIsCartOpen}:{isSearchOpen:boolean, setIsSearchOpen: (...args: any) => any, isCartOpen:boolean, setIsCartOpen: (...args: any) => any}) => {
     return (
@@ -12,13 +13,10 @@ const Navbar = ({isSearchOpen,setIsSearchOpen, isCartOpen, setIsCartOpen}:{isSea
                     <div className={`${style.navbar_item} ${style.navbar_nav}`}>
                         <ul>
                             <li>
-                                <a href="#">1232134dsad</a>
+                                <Link to={"/"}>Main page</Link>
                             </li>
                             <li>
-                                <a href="#">safdsafdas</a>
-                            </li>
-                            <li>
-                                <a href="#">fsafasf</a>
+                                <Link to={"/cart"}>Cart page</Link>
                             </li>
                         </ul>
                     </div>

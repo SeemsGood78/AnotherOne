@@ -1,0 +1,47 @@
+.cart {
+    height: auto;
+
+    &_label {
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        margin-top: 35px;
+        margin-bottom: 35px;
+    }
+
+    &_table {
+        display: grid;
+        grid-template-columns: 50% repeat(3, 1fr);
+        margin-bottom: 20px;
+
+        &>div:nth-child(4n) {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        &>div:nth-child(3n) {
+            display: flex;
+            justify-content: center;
+        }
+
+        &_labelrow {
+            font-size: 20px;
+        }
+
+        &>div {
+            padding-bottom: 20px;
+            border-bottom: 1px solid black;
+        }
+    }
+
+    &_total {
+        display: grid;
+        grid-template-columns: 1fr auto;
+
+        &_block {
+            .subtotal-block {
+                grid-column: 2;
+            }
+        }
+    }
+}

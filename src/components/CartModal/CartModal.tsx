@@ -1,6 +1,7 @@
 import style from './style.module.scss'
+import { Link } from 'react-router-dom';
 
-const CartModal = ({isCartOpen,setIsCartOpen}:{isCartOpen:boolean,setIsCartOpen: (...args: any) => any}) => {
+const CartModal = ({ isCartOpen, setIsCartOpen }: { isCartOpen: boolean, setIsCartOpen: (...args: any) => any }) => {
     return (
         <div
             className={`${style.cartModal} ${isCartOpen ? style.active : style.inactive}`}
@@ -20,7 +21,13 @@ const CartModal = ({isCartOpen,setIsCartOpen}:{isCartOpen:boolean,setIsCartOpen:
             </div>
             <hr />
             <div className={style.cartModal_list}>
-                Your cart is currently empty.
+                <div className={style.cartModal_list_item}>
+                    Your cart is currently empty.
+                </div>
+                <div className={style.cartModal_list_footer}>
+                    <div className={style.cartModal_list_footer_total}><span>Subtotal</span><span>123</span></div>
+                    <Link to={"/cart"}>Check out</Link>
+                </div>
             </div>
         </div>
     )

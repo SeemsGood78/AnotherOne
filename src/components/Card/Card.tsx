@@ -1,12 +1,17 @@
 import style from './style.module.scss'
 import { BeerType } from '../../types/Beer'
 import { CardProps } from '../../types/CardProps'
+import { useStore } from '../store'
 
 function Card({ beers, loading }: CardProps) {
+
+    const { addToCart,cart } = useStore();
 
     if (loading) {
         return <span>Loading...</span>
     }
+
+    console.log(cart)
 
     return (
         <div className={style.grid}>
@@ -23,7 +28,10 @@ function Card({ beers, loading }: CardProps) {
                             <span>{beer.Volume}</span>
                         </div>
                         <div>
-                            <button className={style.grid_block_label_button}>Add to cart</button>
+                            <button
+                                className={style.grid_block_label_button}
+                                onClick={() => addToCart(beer.Id)}
+                            >Add to cart</button>
                         </div>
                     </div>
                 </div>

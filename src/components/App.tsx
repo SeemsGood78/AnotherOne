@@ -1,11 +1,16 @@
-import Header from './Header/Header';
-import Body from './Body/Body'
+import Mainpage from './Pages/Mainpage';
+import Cartpage from './Pages/Cartpage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <>
-      <Header />
-      <Body />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Mainpage />} />
+          <Route path='/cart' element={<Cartpage />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

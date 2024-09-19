@@ -1,0 +1,33 @@
+.headlimit {
+    padding: 0 40px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+
+    &_item {
+        display: flex;
+        align-items: center;
+    }
+
+    &_logo {
+        height: 55px;
+        width: 55px;
+        border-radius: 4px;
+    }
+
+    &_nav {
+        display: flex;
+        justify-content: center;
+
+        &>ul {
+            margin: 0 auto;
+
+            &>li {
+                display: inline-block;
+                margin: 0;
+            }
+        }
+    }
+}

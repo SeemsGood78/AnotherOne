@@ -27,6 +27,7 @@ interface BeerStore {
   sortBy: (key: keyof Beer, ask: boolean) => void;
   applyFilters: (filtersObject: Record<keyof Beer, any[]>) => void;
   addToCart: (Id: number) => void
+  removeFromCart: (Id: number) => void
 };
 
 const store = create<BeerStore>((set) => ({
@@ -83,6 +84,13 @@ const store = create<BeerStore>((set) => ({
     } else {
       return state;
     }
+  }),
+  removeFromCart: (id: number) => set((state) => {
+    const newCart = state.cart.filter((beer) => beer.Id !== id);
+    return {
+      ...state,
+      cart: newCart,
+    };
   }),
 }));
 

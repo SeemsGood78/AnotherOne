@@ -1,16 +1,15 @@
 import style from './style.module.scss'
 import { useStore } from '../../components/store'
 
-
 const Cart = () => {
 
-    const { cart } = useStore();
+    const { cart, removeFromCart } = useStore();
+
     if (!cart.length) return (
-        <div>Your cart is currently empty.</div>
+        <h2 className={style.empty}>Your cart is currently empty.</h2>
     )
 
     return (
-
         <div className="container">
             <div className={style.cart}>
                 <div className={style.cart_label}><span>Your cart (4s)</span></div>
@@ -47,6 +46,7 @@ const Cart = () => {
                                 <div className={style.cart_table_labelrow_for_block}>
                                     <h4>$123</h4>
                                     <img
+                                        onClick={() => removeFromCart(beer.Id)}
                                         src="https://www.svgrepo.com/show/520676/cross.svg"
                                         alt="Cart Icon"
                                         width="24"
